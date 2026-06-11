@@ -7,18 +7,20 @@ This is the **MCP-powered sibling** of the [`deep-research`](../deep-research-pl
 |            | [`deep-research`](../deep-research-plugin/) | `deep-research-mcp` (this plugin)                                                                                                 |
 | ---------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | Web access | Cowork's **built-in** web search/fetch      | **Firecrawl** / **Exa** MCP connectors                                                                                            |
-| Setup      | None                                        | Add a connector + API key ([SETUP.md](skills/deep-research/reference/SETUP.md))                                                   |
+| Setup      | None                                        | Add a connector + API key ([SETUP.md](skills/deep-research-mcp/reference/SETUP.md))                                               |
 | Cost       | Included                                    | Firecrawl/Exa bill per call                                                                                                       |
 | Best for   | Anyone, zero config                         | Users who already run Firecrawl/Exa and want richer search + clean scrape coverage (news filtering, PDF parsing, semantic search) |
 
-Pick one — installing both gives Cowork two skills named `deep-research`.
+The two skills are named **`deep-research`** and **`deep-research-mcp`**, so both
+can be installed at once without colliding. Cowork picks `deep-research-mcp` only
+when a Firecrawl/Exa connector is enabled; otherwise it uses `deep-research`.
 
 ## Provenance
 
 Single-agent port of a Claude Code multi-agent `Workflow` harness (the original
 349-line orchestration script — `agent()` fan-out, `pipeline()`/`parallel()`,
 JSON output schemas, 3-vote adversarial verification — is preserved verbatim at
-[`skills/deep-research/reference/original-claude-code-workflow.js`](skills/deep-research/reference/original-claude-code-workflow.js)). The `Workflow` runtime is Claude-Code-only, so the five phases were re-expressed as sequential instructions one Cowork agent executes itself; the parallel voter agents become inline skeptical passes.
+[`skills/deep-research-mcp/reference/original-claude-code-workflow.js`](skills/deep-research-mcp/reference/original-claude-code-workflow.js)). The `Workflow` runtime is Claude-Code-only, so the five phases were re-expressed as sequential instructions one Cowork agent executes itself; the parallel voter agents become inline skeptical passes.
 
 ## What it does (5-phase pipeline)
 
@@ -30,9 +32,18 @@ JSON output schemas, 3-vote adversarial verification — is preserved verbatim a
 | 4. Verify          | **3-pass adversarial red team** per claim — a claim dies if ≥2 passes refute it                                   |
 | 5. Synthesize      | Merge survivors, rank by confidence, write a fully cited report                                                   |
 
+## Reference docs
+
+The skill loads these on demand during the relevant phase:
+
+- [`reference/SETUP.md`](skills/deep-research-mcp/reference/SETUP.md) — enabling the Firecrawl/Exa connectors.
+- [`reference/methodology.md`](skills/deep-research-mcp/reference/methodology.md) — search discipline, fetch-before-cite, source-quality tiers, atomic claims.
+- [`reference/quality-gates.md`](skills/deep-research-mcp/reference/quality-gates.md) — the 2-of-3 adversarial kill protocol, iteration budget, release checklist.
+- [`reference/original-claude-code-workflow.js`](skills/deep-research-mcp/reference/original-claude-code-workflow.js) — original Claude Code harness (provenance).
+
 ## Requirements
 
-At least one of the **Firecrawl** or **Exa** remote MCP connectors enabled in Cowork. See [SETUP.md](skills/deep-research/reference/SETUP.md) for adding them (standard Cowork vs. managed "Cowork on 3P"), and a note on shipping connectors bundled with the plugin.
+At least one of the **Firecrawl** or **Exa** remote MCP connectors enabled in Cowork. See [SETUP.md](skills/deep-research-mcp/reference/SETUP.md) for adding them (standard Cowork vs. managed "Cowork on 3P"), and a note on shipping connectors bundled with the plugin.
 
 ## Install
 

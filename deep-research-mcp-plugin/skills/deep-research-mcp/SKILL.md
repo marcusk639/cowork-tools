@@ -1,6 +1,6 @@
 ---
-name: deep-research
-description: Deep, multi-source, fact-checked research using the Firecrawl and/or Exa MCP connectors. Produces a cited report with evidence, source attribution, and confidence ratings. Use when the user wants thorough research on any topic. Decomposes the question into angles, searches the web via Firecrawl/Exa, deep-reads (scrapes) key sources, adversarially verifies each claim before trusting it, and synthesizes a cited report. If the question is underspecified, ask 2-3 clarifying questions first.
+name: deep-research-mcp
+description: Deep, multi-source, fact-checked research using the Firecrawl and/or Exa MCP connectors. Produces a cited report with evidence, source attribution, and confidence ratings. Use when the user wants thorough research on any topic AND has a Firecrawl or Exa connector enabled. Decomposes the question into angles, searches the web via Firecrawl/Exa, deep-reads (scrapes) key sources, adversarially verifies each claim before trusting it, and synthesizes a cited report. If the question is underspecified, ask 2-3 clarifying questions first. (For the no-setup, built-in-web-tools version, use the deep-research skill instead.)
 ---
 
 # Deep Research (Firecrawl / Exa MCP)
@@ -12,8 +12,24 @@ sub-agents; here you (one agent) run the same five phases sequentially. The
 discipline — broad angles, source-quality grading, and **adversarial verification
 before any claim enters the report** — is the point. Do not skip verification.
 
-The original orchestration script is in
-`reference/original-claude-code-workflow.js` for provenance.
+## Relationship to the `deep-research` skill
+
+This is the **MCP-powered sibling** of the `deep-research` skill (built-in web
+tools, zero setup). Same verification discipline; this one swaps Cowork's built-in
+search/fetch for the Firecrawl/Exa connectors to gain news filtering, clean
+markdown scrape, PDF parsing, and semantic search — at the cost of setup and
+per-call billing. Use this skill only when a Firecrawl or Exa connector is enabled;
+otherwise defer to `deep-research`.
+
+## Reference docs (read before the relevant phase)
+
+- `reference/SETUP.md` — enabling the Firecrawl/Exa connectors in Cowork.
+- `reference/methodology.md` — **read before Phase 2–3.** Search discipline,
+  fetch-before-cite rule, source-quality tiers, atomic-claim decomposition.
+- `reference/quality-gates.md` — **read before Phase 4–5.** The 2-of-3 adversarial
+  kill protocol, iteration budget, and the hard release checklist.
+- `reference/original-claude-code-workflow.js` — the original Claude Code
+  `Workflow` harness, preserved for provenance and future re-porting.
 
 ## MCP connector requirements
 

@@ -1,0 +1,16 @@
+# Serena MCP project cache
+.serena/
+
+# Tauri / Rust build artifacts
+target/
+**/target/
+
+# Node
+node_modules/
+dist/
+.DS_Store
+
+# Env / secrets
+.env
+.env.*
+!.env.example

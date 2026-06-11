@@ -1,0 +1,13 @@
+{
+  "name": "cowork-deep-research-mcp",
+  "owner": {
+    "name": "Cowork Tools"
+  },
+  "plugins": [
+    {
+      "name": "deep-research-mcp",
+      "source": "./",
+      "description": "Deep, multi-source, fact-checked research for Claude Cowork using the Firecrawl and/or Exa MCP connectors — fan-out search, scrape, adversarial verification, and fully cited synthesis."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "deep-research",
+  "version": "0.1.0",
+  "description": "Deep, multi-source, fact-checked research for Claude Cowork. Fans out web searches, fetches sources, extracts atomic claims, red-teams them with adversarial verification, and synthesizes a fully cited report — using only Cowork's built-in web search and web fetch tools (no API keys, no paid search providers).",
+  "author": {
+    "name": "Cowork Tools"
+  },
+  "keywords": [
+    "research",
+    "deep-research",
+    "web-search",
+    "fact-checking",
+    "citations",
+    "cowork"
+  ]
+}

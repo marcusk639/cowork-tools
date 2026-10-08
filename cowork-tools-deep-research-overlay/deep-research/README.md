@@ -1,6 +1,6 @@
 # Deep Research — Claude Cowork plugin
 
-A deep, multi-source, **fact-checked** research skill for [Claude Cowork](https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork). It fans out web searches, fetches sources, tracks every claim to a cited source, **adversarially red-teams** those claims, and synthesizes a fully referenced report — using only Cowork's **built-in web search and web fetch** tools. No API keys, no paid search providers (Exa/Tavily/Firecrawl).
+A deep, multi-source, **fact-checked** research skill for [Claude Cowork](https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork). It fans out web searches, fetches sources, tracks every claim to a cited source, **adversarially red-teams** those claims, and synthesizes a fully referenced report — using the **Firecrawl and/or Exa connectors** when they are enabled, and Cowork's **built-in web search and web fetch** otherwise — so it works with zero setup and gets better with connectors.
 
 It is a port of the [199-biotechnologies/claude-deep-research-skill](https://github.com/199-biotechnologies/claude-deep-research-skill) pipeline, re-targeted from the Claude Code CLI (which uses an external `search-cli` + Python scripts) to Cowork's native tooling.
 
@@ -30,6 +30,15 @@ Cowork has built-in web search/fetch, and there are official research-flavored s
 | `standard`  | 1–5,8               | 8           | 0               |
 | `deep`      | 1–8                 | 10          | up to 2         |
 | `ultradeep` | 1–8 (wider fan-out) | 15          | up to 2         |
+
+## Search and fetch tools
+
+| Operation | First choice       | Second choice    | Fallback            |
+| --------- | ------------------ | ---------------- | ------------------- |
+| Search    | `firecrawl_search` | `web_search_exa` | built-in web search |
+| Fetch     | `firecrawl_scrape` | `web_fetch_exa`  | built-in web fetch  |
+
+Connectors are optional. With them, the skill can fetch any public URL (the built-in fetch only reaches search results and URLs you share), parse PDFs, and filter by domain. Both providers bill per call. Setup: [`skills/deep-research/reference/SETUP.md`](skills/deep-research/reference/SETUP.md).
 
 ## Evidence ledgers
 
@@ -94,6 +103,7 @@ deep-research/
 └── skills/deep-research/
     ├── SKILL.md             # the 8-phase pipeline
     └── reference/
+        ├── SETUP.md         # enabling the optional Firecrawl/Exa connectors
         ├── methodology.md   # search/sourcing/evidence rules (read before Phase 3)
         └── quality-gates.md # red-team protocol + release checklist (Phase 6/8)
 ```
@@ -101,8 +111,8 @@ deep-research/
 ## Known limitations
 
 - **Untested in the live Cowork runtime.** Two things to confirm on first run: (1) whether Cowork grants skill-driven fetches network access (its _built-in_ web fetch always works server-side), and (2) whether concurrent sub-agent searches are available for the Phase 3 fan-out. If sub-agents aren't available, retrieval degrades gracefully to sequential.
-- Cowork's web fetch only reaches search-result URLs and URLs you've shared; unreachable sources are recorded as gaps, never paraphrased from memory.
-- Tool identifiers are referenced by capability ("web search", "web fetch") rather than hardcoded names, since Cowork's tool IDs aren't publicly documented.
+- Without a connector, Cowork's web fetch only reaches search-result URLs and URLs you've shared; sources no tool can reach are recorded as gaps, never paraphrased from memory.
+- Built-in tools are referenced by capability ("web search", "web fetch") since Cowork's tool IDs aren't publicly documented. Connector tools are referenced by name but may appear with a namespace prefix.
 
 ## Credit
 

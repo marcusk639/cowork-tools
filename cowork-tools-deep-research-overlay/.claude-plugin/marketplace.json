@@ -7,12 +7,7 @@
     {
       "name": "deep-research",
       "source": "./deep-research",
-      "description": "Deep, multi-source, fact-checked research for Claude Cowork — fan-out web search, fetch, adversarial red-team verification, and fully cited synthesis using only built-in web tools. No API keys or paid search providers. Slash commands: /deep-research plus quick/standard/deep/ultradeep mode aliases."
-    },
-    {
-      "name": "deep-research-mcp",
-      "source": "./deep-research-mcp",
-      "description": "Deep, multi-source, fact-checked research for Claude Cowork using the Firecrawl and/or Exa MCP connectors — fan-out search, scrape, adversarial verification, and fully cited synthesis. The MCP-powered sibling of deep-research; use when a Firecrawl/Exa connector is enabled. Slash command: /deep-research-mcp."
+      "description": "Deep, multi-source, fact-checked research for Claude Cowork — fan-out web search, fetch, adversarial red-team verification, and fully cited synthesis using the Firecrawl/Exa connectors when enabled, with Cowork's built-in web tools as a no-setup fallback. Slash commands: /deep-research plus quick/standard/deep/ultradeep mode aliases."
     }
   ]
 }

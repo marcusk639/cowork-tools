@@ -1,13 +1,15 @@
 # Setup — Firecrawl / Exa MCP connectors in Cowork
 
-This skill needs at least one of the **Firecrawl** or **Exa** remote MCP
-connectors enabled. Both are remote MCP servers, which Cowork supports.
+The `deep-research` skill works without any connector, using Cowork's built-in
+web search and fetch. Enabling the **Firecrawl** and/or **Exa** remote MCP
+connectors improves it: fetching any public URL, PDF parsing, domain filters and
+semantic search. Both are remote MCP servers, which Cowork supports.
 
 > **This plugin does not bundle the connectors.** You enable them yourself in
 > Cowork (one-time setup below). This is deliberate — you control which provider
 > runs and which account is billed, and there are no third-party server settings
 > baked into the plugin. The skill checks for an enabled connector at runtime and
-> stops with instructions if neither is present.
+> falls back to Cowork's built-in web tools if neither is present.
 
 ## Standard Cowork (Free / Pro / Max / Team)
 

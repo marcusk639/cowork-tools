@@ -3,7 +3,7 @@
   "owner": {
     "name": "marcusk639"
   },
-  "description": "Claude Cowork plugins by marcusk639: deep, fact-checked, fully cited research (deep-research) and prompt engineering for Claude (prompt-engineer).",
+  "description": "Claude Cowork plugins by marcusk639: deep, fact-checked research (deep-research) and prompt engineering for Claude (prompt-engineer, prompt-engineer-advanced).",
   "plugins": [
     {
       "name": "deep-research",
@@ -14,6 +14,11 @@
       "name": "prompt-engineer",
       "source": "./prompt-engineer",
       "description": "Write, improve and debug prompts for Claude using Anthropic's prompt-engineering best practices (clarity, XML structure, chain of thought, multishot, chaining, hallucination reduction, consistency, jailbreak mitigation). No setup."
+    },
+    {
+      "name": "prompt-engineer-advanced",
+      "source": "./prompt-engineer-advanced",
+      "description": "Design, optimize and evaluate prompts for LLMs: patterns, A/B testing, evaluation frameworks and test suites, structured outputs, system prompts with guardrails, context management. From Jeffallan/claude-skills (MIT). No setup."
     }
   ]
 }

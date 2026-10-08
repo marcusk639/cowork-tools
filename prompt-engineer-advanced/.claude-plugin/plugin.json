@@ -1,0 +1,11 @@
+{
+  "name": "prompt-engineer-advanced",
+  "version": "1.2.0",
+  "description": "Design, optimize and evaluate prompts for LLMs: prompt patterns (few-shot, CoT, ReAct), iterative optimization and A/B testing, evaluation frameworks and test suites, structured outputs and function-calling schemas, system prompts with guardrails, and context management. Packaged from Jeffallan/claude-skills (MIT).",
+  "author": {
+    "name": "Jeffallan",
+    "url": "https://github.com/Jeffallan"
+  },
+  "license": "MIT",
+  "keywords": ["prompt-engineering", "evaluation", "structured-outputs", "system-prompts", "context-management", "cowork"]
+}

@@ -32,6 +32,7 @@ A desktop application (macOS and Windows) that syncs Claude Cowork data — proj
 | `.claude-plugin/marketplace.json` | Marketplace manifest at the repo root; lists each plugin with `"source": "./<plugin>"`.                                     |
 | `deep-research/`            | Cowork plugin, skill `deep-research`. 8-phase research pipeline; uses Firecrawl/Exa connectors when enabled, else Cowork's built-in web search/fetch. |
 | `prompt-engineer/`          | Cowork plugin, skill `prompt-engineer`. Prompt-engineering workflow + three `references/` docs. No tools or connectors needed. |
+| `prompt-engineer-advanced/` | Cowork plugin, skill `prompt-engineer-advanced`. Third-party (Jeffallan/claude-skills, MIT; keep `LICENSE`). Only local change: skill `name`. |
 | `.planning/`                | GSD planning docs for the (unbuilt) sync app. Source of the GSD-managed sections below.                                            |
 | `README.md`                 | User-facing description of the plugins and install steps.                                                                                 |
 

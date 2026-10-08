@@ -13,19 +13,15 @@ cd cowork-tools
 
 From within a Claude Cowork session:
 
-```
-/plugin install path/to/deep-research-plugin
-```
-
-Or point Cowork to the GitHub repo URL when prompted for a plugin source.
+In the Claude desktop app, open **Customize → Plugins → Add marketplace** and enter
+`marcusk639/cowork-tools`, then install `deep-research`. See `README.md` for details.
 
 ## Contents
 
 | Directory                                | Plugin / Skill  | Description                                                      |
 | ---------------------------------------- | --------------- | ---------------------------------------------------------------- |
-| `cowork-tools-deep-research-overlay/`    | `deep-research` | Multi-source research using Cowork built-in search (no API keys) |
-| `cowork-tools-deep-research-overlay-v0/` | (legacy)        | Earlier version                                                  |
-| `skills/`                                | Various         | Additional Cowork skills                                         |
+| `.claude-plugin/`                        | (marketplace)   | Marketplace manifest listing the plugins                         |
+| `deep-research/`                         | `deep-research` | Multi-source research; Firecrawl/Exa if enabled, else built-ins  |
 
 ## Notes
 

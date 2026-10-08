@@ -3,6 +3,7 @@
   "owner": {
     "name": "marcusk639"
   },
+  "description": "Claude Cowork plugins by marcusk639: deep, fact-checked, fully cited research (deep-research).",
   "plugins": [
     {
       "name": "deep-research",

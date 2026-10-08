@@ -10,6 +10,7 @@ at the repo root lists the plugins, and each plugin lives in its own top-level f
 | Plugin                             | Skill name      | Web access                                                    | Setup                      |
 | ---------------------------------- | --------------- | ------------------------------------------------------------- | -------------------------- |
 | [`deep-research`](./deep-research) | `deep-research` | Firecrawl/Exa connectors if enabled, else Cowork built-in web search/fetch | None (connectors optional) |
+| [`prompt-engineer`](./prompt-engineer) | `prompt-engineer` | None | None |
 
 ### deep-research
 
@@ -25,11 +26,19 @@ to Cowork's built-in web search and fetch otherwise, so it works with zero setup
 → See [`deep-research/README.md`](./deep-research/README.md) and the connector
 [`SETUP.md`](./deep-research/skills/deep-research/reference/SETUP.md).
 
+### prompt-engineer
+
+Helps write, improve and debug prompts for Claude using Anthropic's prompt-engineering
+guidance: clarity, XML structure, system prompts, chain of thought, multishot examples,
+prompt chaining, hallucination reduction, consistency and jailbreak mitigation.
+
+→ See [`prompt-engineer/README.md`](./prompt-engineer/README.md).
+
 ## Installing in Cowork
 
 1. In the Claude desktop app, open **Customize → Plugins**.
 2. Click **Add marketplace** and enter `marcusk639/cowork-tools`.
-3. Click **Install** on `deep-research`.
+3. Click **Install** on `deep-research` and/or `prompt-engineer`.
 4. Optional: enable a Firecrawl or Exa connector under **Settings → Connectors**, then
    switch it on in a task via **"+" → Connectors**.
 
@@ -42,6 +51,7 @@ CLI:
 ```bash
 claude plugin marketplace add marcusk639/cowork-tools
 claude plugin install deep-research@cowork-tools
+claude plugin install prompt-engineer@cowork-tools
 ```
 
 ### Adding a plugin
@@ -61,5 +71,10 @@ cowork-tools/
 │   └── skills/deep-research/
 │       ├── SKILL.md
 │       └── reference/            # SETUP, methodology, quality-gates
+├── prompt-engineer/              # the prompt-engineer plugin
+│   ├── .claude-plugin/plugin.json
+│   └── skills/prompt-engineer/
+│       ├── SKILL.md
+│       └── references/           # core, advanced, quality-improvement
 └── .planning/                    # project planning docs
 ```

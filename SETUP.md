@@ -22,6 +22,7 @@ In the Claude desktop app, open **Customize → Plugins → Add marketplace** an
 | ---------------------------------------- | --------------- | ---------------------------------------------------------------- |
 | `.claude-plugin/`                        | (marketplace)   | Marketplace manifest listing the plugins                         |
 | `deep-research/`                         | `deep-research` | Multi-source research; Firecrawl/Exa if enabled, else built-ins  |
+| `prompt-engineer/`                       | `prompt-engineer` | Prompt-writing and prompt-debugging for Claude                 |
 
 ## Notes
 

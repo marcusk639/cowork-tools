@@ -3,12 +3,17 @@
   "owner": {
     "name": "marcusk639"
   },
-  "description": "Claude Cowork plugins by marcusk639: deep, fact-checked, fully cited research (deep-research).",
+  "description": "Claude Cowork plugins by marcusk639: deep, fact-checked, fully cited research (deep-research) and prompt engineering for Claude (prompt-engineer).",
   "plugins": [
     {
       "name": "deep-research",
       "source": "./deep-research",
       "description": "Deep, multi-source, fact-checked research for Claude Cowork — fan-out web search, fetch, adversarial red-team verification, and fully cited synthesis using the Firecrawl/Exa connectors when enabled, with Cowork's built-in web tools as a no-setup fallback. Slash commands: /deep-research plus quick/standard/deep/ultradeep mode aliases."
+    },
+    {
+      "name": "prompt-engineer",
+      "source": "./prompt-engineer",
+      "description": "Write, improve and debug prompts for Claude using Anthropic's prompt-engineering best practices (clarity, XML structure, chain of thought, multishot, chaining, hallucination reduction, consistency, jailbreak mitigation). No setup."
     }
   ]
 }

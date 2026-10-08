@@ -33,6 +33,7 @@ A desktop application (macOS and Windows) that syncs Claude Cowork data — proj
 | `deep-research/`            | Cowork plugin, skill `deep-research`. 8-phase research pipeline; uses Firecrawl/Exa connectors when enabled, else Cowork's built-in web search/fetch. |
 | `prompt-engineer/`          | Cowork plugin, skill `prompt-engineer`. Prompt-engineering workflow + three `references/` docs. No tools or connectors needed. |
 | `llm-prompt-engineer/` | Cowork plugin, skill `llm-prompt-engineer`. Third-party (Jeffallan/claude-skills, MIT; keep `LICENSE`). Only local change: skill `name`. |
+| `cowork-agents/`            | Cowork plugin with subagents in `agents/` (`research-analyst`, `verifier`), adapted from `~/.claude/agents/`. No `tools:` lists, so agents inherit the session's tools and connectors; no references to Claude Code-only agents. |
 | `.planning/`                | GSD planning docs for the (unbuilt) sync app. Source of the GSD-managed sections below.                                            |
 | `README.md`                 | User-facing description of the plugins and install steps.                                                                                 |
 

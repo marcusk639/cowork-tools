@@ -1,0 +1,9 @@
+{
+  "name": "cowork-agents",
+  "version": "0.1.0",
+  "description": "Subagents for Claude Cowork: research-analyst (multi-source research and synthesis) and verifier (adversarial re-check of claims before they are acted on).",
+  "author": {
+    "name": "Cowork Tools"
+  },
+  "keywords": ["agents", "subagents", "research", "verification", "cowork"]
+}

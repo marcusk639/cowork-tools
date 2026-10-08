@@ -24,6 +24,7 @@ In the Claude desktop app, open **Customize → Plugins → Add marketplace** an
 | `deep-research/`                         | `deep-research` | Multi-source research; Firecrawl/Exa if enabled, else built-ins  |
 | `prompt-engineer/`                       | `prompt-engineer` | Prompt-writing and prompt-debugging for Claude                 |
 | `llm-prompt-engineer/`              | `llm-prompt-engineer` | Prompt evaluation, optimization and schemas (MIT, Jeffallan) |
+| `cowork-agents/`                         | (agents)        | Subagents: `research-analyst`, `verifier`                        |
 
 ## Notes
 

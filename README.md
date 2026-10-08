@@ -12,6 +12,7 @@ at the repo root lists the plugins, and each plugin lives in its own top-level f
 | [`deep-research`](./deep-research) | `deep-research` | Firecrawl/Exa connectors if enabled, else Cowork built-in web search/fetch | None (connectors optional) |
 | [`prompt-engineer`](./prompt-engineer) | `prompt-engineer` | None | None |
 | [`llm-prompt-engineer`](./llm-prompt-engineer) | `llm-prompt-engineer` | None | None |
+| [`cowork-agents`](./cowork-agents) | Agents: `research-analyst`, `verifier` | Session's web tools / connectors | None |
 
 ### deep-research
 
@@ -43,11 +44,20 @@ management. Packaged from [Jeffallan/claude-skills](https://github.com/Jeffallan
 
 → See [`llm-prompt-engineer/README.md`](./llm-prompt-engineer/README.md).
 
+### cowork-agents
+
+Subagents Claude can delegate to inside a Cowork task:
+
+- **`cowork-agents:research-analyst`** (Sonnet) — multi-source research and synthesis with cited findings.
+- **`cowork-agents:verifier`** (Opus) — adversarially re-checks a specific claim or finding before it is acted on, and returns CONFIRMED / REFUTED / PLAUSIBLE.
+
+Neither agent restricts its tools, so each uses whatever the session has, including Firecrawl or Exa when enabled.
+
 ## Installing in Cowork
 
 1. In the Claude desktop app, open **Customize → Plugins**.
 2. Click **Add marketplace** and enter `marcusk639/cowork-tools`.
-3. Click **Install** on the plugins you want: `deep-research`, `prompt-engineer`, `llm-prompt-engineer`.
+3. Click **Install** on the plugins you want: `deep-research`, `prompt-engineer`, `llm-prompt-engineer`, `cowork-agents`.
 4. Optional: enable a Firecrawl or Exa connector under **Settings → Connectors**, then
    switch it on in a task via **"+" → Connectors**.
 
@@ -62,6 +72,7 @@ claude plugin marketplace add marcusk639/cowork-tools
 claude plugin install deep-research@cowork-tools
 claude plugin install prompt-engineer@cowork-tools
 claude plugin install llm-prompt-engineer@cowork-tools
+claude plugin install cowork-agents@cowork-tools
 ```
 
 ### Adding a plugin
@@ -92,5 +103,8 @@ cowork-tools/
 │   └── skills/llm-prompt-engineer/
 │       ├── SKILL.md
 │       └── references/           # 6 topic references
+├── cowork-agents/                # subagents plugin
+│   ├── .claude-plugin/plugin.json
+│   └── agents/                   # research-analyst.md, verifier.md
 └── .planning/                    # project planning docs
 ```

@@ -3,12 +3,12 @@
   "owner": {
     "name": "marcusk639"
   },
-  "description": "Claude Cowork plugins by marcusk639: deep, fact-checked research (deep-research) and prompt engineering for Claude (prompt-engineer, llm-prompt-engineer).",
+  "description": "Claude Cowork plugins by marcusk639: deep, fact-checked research (deep-research), prompt engineering for Claude (prompt-engineer, llm-prompt-engineer) and subagents (cowork-agents).",
   "plugins": [
     {
       "name": "deep-research",
       "source": "./deep-research",
-      "description": "Deep, multi-source, fact-checked research for Claude Cowork — fan-out web search, fetch, adversarial red-team verification, and fully cited synthesis using the Firecrawl/Exa connectors when enabled, with Cowork's built-in web tools as a no-setup fallback. Slash commands: /deep-research plus quick/standard/deep/ultradeep mode aliases."
+      "description": "Deep, multi-source, fact-checked research for Claude Cowork \u2014 fan-out web search, fetch, adversarial red-team verification, and fully cited synthesis using the Firecrawl/Exa connectors when enabled, with Cowork's built-in web tools as a no-setup fallback. Slash commands: /deep-research plus quick/standard/deep/ultradeep mode aliases."
     },
     {
       "name": "prompt-engineer",
@@ -19,6 +19,11 @@
       "name": "llm-prompt-engineer",
       "source": "./llm-prompt-engineer",
       "description": "Design, optimize and evaluate prompts for LLMs: patterns, A/B testing, evaluation frameworks and test suites, structured outputs, system prompts with guardrails, context management. From Jeffallan/claude-skills (MIT). No setup."
+    },
+    {
+      "name": "cowork-agents",
+      "source": "./cowork-agents",
+      "description": "Subagents for Claude Cowork: research-analyst (multi-source research and synthesis) and verifier (adversarial re-check of claims before they are acted on). No setup; uses the Firecrawl/Exa connectors when enabled."
     }
   ]
 }

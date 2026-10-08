@@ -1,17 +1,17 @@
 # Methodology — search, sourcing, and evidence rules
 
-Read this before Phase 3 (RETRIEVE). It governs _how_ searching and evidence capture work on Cowork's built-in tools.
+Read this before Phase 3 (RETRIEVE). It governs _how_ searching and evidence capture work, whichever tools the Tooling contract in `SKILL.md` selected (Firecrawl/Exa connectors or Cowork's built-ins).
 
-## Search discipline (built-in web search)
+## Search discipline
 
 - **Multiple queries per angle.** Each of the 4–6 angles gets several distinct phrasings: a broad framing, a specific-term query, a contrarian/"criticism of X" query, and a recency query (e.g. include the current year). One query per angle is insufficient.
 - **Parallelize.** Where Cowork lets you dispatch concurrent sub-agent searches, run angles in parallel. Otherwise interleave so no single angle dominates the budget.
 - **Stop condition per angle:** stop when two consecutive new queries surface no novel, independent sources (diminishing returns), or the mode's source floor is met with margin.
 
-## Fetch-before-cite (built-in web fetch)
+## Fetch-before-cite
 
-- A search snippet is a lead, not evidence. **Web-fetch the page** and quote the actual text before recording evidence.
-- Cowork web fetch only reaches search-result URLs and URLs the user shared. If a high-value source is unreachable, log it in `sources.jsonl` with `"quality":"unreachable"` and treat its claims as `unverified` — never paraphrase from memory.
+- A search snippet is a lead, not evidence. **Fetch the page** and quote the actual text before recording evidence.
+- If a high-value source won't load, work down the fetch fallback chain (`firecrawl_scrape` → `web_fetch_exa` → built-in web fetch). Cowork's built-in web fetch only reaches search-result URLs and URLs the user shared, so a connector often succeeds where it fails. If every available tool fails, log it in `sources.jsonl` with `"quality":"unreachable"` and treat its claims as `unverified` — never paraphrase from memory.
 - Capture **verbatim quotes ≤40 words** with a locator. Long paraphrase without a quote is not citable evidence.
 
 ## Source quality tiers

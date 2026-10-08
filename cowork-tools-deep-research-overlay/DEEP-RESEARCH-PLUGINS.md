@@ -4,15 +4,14 @@ This repo (`marcusk639/cowork-tools`) serves as a Claude Cowork **plugin marketp
 
 | Plugin                                      | Web access                          | Setup                            | Slash commands                                                               |
 | ------------------------------------------- | ----------------------------------- | -------------------------------- | ---------------------------------------------------------------------------- |
-| [`deep-research`](./deep-research)         | Cowork built-in web search / fetch  | None                             | `/deep-research`, `/deep-research-quick`, `-standard`, `-deep`, `-ultradeep` |
-| [`deep-research-mcp`](./deep-research-mcp) | Firecrawl and/or Exa MCP connectors | Enable a Firecrawl/Exa connector | `/deep-research-mcp`                                                         |
+| [`deep-research`](./deep-research)         | Firecrawl/Exa connectors if enabled, else Cowork built-in web search / fetch | None (connectors optional) | `/deep-research`, `/deep-research-quick`, `-standard`, `-deep`, `-ultradeep` |
 
 ## Install (no terminal — most users)
 
 1. In the Claude desktop app, open **Customize → Plugins**.
 2. Click **Add marketplace** and enter `marcusk639/cowork-tools` (or the full `https://github.com/marcusk639/cowork-tools` URL).
-3. Both plugins appear under the marketplace — click **Install** on each one you want.
-4. For `deep-research-mcp`, also enable a Firecrawl or Exa connector under **Settings → Connectors** (see `deep-research-mcp/skills/deep-research-mcp/reference/SETUP.md`).
+3. The plugins appear under the marketplace — click **Install** on each one you want.
+4. Optional: enable a Firecrawl or Exa connector under **Settings → Connectors** to give `deep-research` better search and fetch (see `deep-research/skills/deep-research/reference/SETUP.md`).
 
 > If the repo is **private**, make sure the Claude GitHub App is installed on it so Cowork can sync.
 
@@ -21,7 +20,6 @@ This repo (`marcusk639/cowork-tools`) serves as a Claude Cowork **plugin marketp
 ```bash
 claude plugin marketplace add marcusk639/cowork-tools
 claude plugin install deep-research@cowork-tools
-claude plugin install deep-research-mcp@cowork-tools
 ```
 
 Once installed, skills fire automatically when relevant and the slash commands above are available in any Cowork task.

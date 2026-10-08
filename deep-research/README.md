@@ -85,6 +85,21 @@ The plugin also registers slash commands. Type `/` in Cowork and pick one, or in
 
 Example: `/deep-research-ultradeep EKRA exposure for recovery-coaching referral arrangements`
 
+### More examples
+
+| Request                                                                                                     | Mode        | What you get                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------- |
+| `/deep-research-quick current state income tax rates for remote employees in Texas vs. Colorado`           | `quick`     | A short cited answer from about 5 sources, no red-team                       |
+| "Research the leading open-source vector databases and how they compare on filtering and hosting cost."    | `standard`  | A cited comparison report from 8+ sources                                    |
+| `/deep-research-deep evidence that peer recovery coaching improves 12-month outcomes`                      | `deep`      | Claims cross-checked across studies and red-teamed; weak claims dropped or flagged |
+| "Do ultradeep research on HIPAA obligations for an app that stores recovery-coaching session notes."       | `ultradeep` | 15+ sources, wider search, full evidence files in `~/Documents/Claude/Research/` |
+
+Tips:
+
+- Say who the report is for and what decision it supports; the scope phase uses that to pick search angles.
+- Name sources to include or avoid ("prefer peer-reviewed studies", "skip vendor blogs").
+- Enable Firecrawl or Exa for PDF-heavy or niche topics; the built-in fetch only reaches search results and URLs you share.
+
 > All commands invoke the same `skills/deep-research/SKILL.md`; the skill and its slash commands are one capability in the Cowork UI.
 
 ## Layout

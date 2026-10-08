@@ -17,4 +17,4 @@ No connectors or setup needed.
 
 Packaged from the `prompt-engineer` skill (v1.2.0) in [Jeffallan/claude-skills](https://github.com/Jeffallan/claude-skills) by [@jeffallan](https://github.com/jeffallan) ([Synergetic Solutions](https://synergetic.solutions)). `references/context-management.md` is adapted from a contribution by [Genius-apple](https://github.com/Genius-apple) ([PR #168](https://github.com/Jeffallan/claude-skills/pull/168)).
 
-Licensed under the MIT License — see [`LICENSE`](LICENSE), copied verbatim from the upstream repository. The only change from upstream is the skill `name`, renamed from `prompt-engineer` to `prompt-engineer-advanced` so it doesn't collide with this marketplace's `prompt-engineer` skill.
+Licensed under the MIT License — see [`LICENSE`](LICENSE), copied verbatim from the upstream repository. The only change from upstream is the skill `name`, renamed from `prompt-engineer` to `llm-prompt-engineer` so it doesn't collide with this marketplace's `prompt-engineer` skill.

@@ -54,9 +54,11 @@ Put your step-by-step thinking in <thinking> tags.
 Put your final answer in <answer> tags.
 ```
 
-### Critical Implementation Note
+### Current models: use built-in thinking first
 
-**"Always have Claude output its thinking. Without outputting its thought process, no thinking occurs!"** Visible reasoning is essential for CoT effectiveness.
+Current Claude models reason internally with **adaptive thinking**, and on Opus 5.5 and Fable 5.1 thinking is always on. On these models, control reasoning depth with the API's `effort` setting rather than with "think step by step" in the prompt, and don't require reasoning sections in the visible output. To inspect the reasoning, request `thinking.display: "summarized"`.
+
+The prompt-level techniques above still apply when thinking is off (for example Sonnet 5.5 with `between_tools`, or Haiku 4.5 without thinking enabled). In that case reasoning only happens if Claude writes it out, so use the structured `<thinking>` / `<answer>` form.
 
 ---
 
@@ -82,7 +84,7 @@ Examples should be:
 
 ### Optimal Quantity
 
-Include 3-5 diverse, relevant examples. More examples = better performance, especially for complex tasks.
+Include a few deliberately varied examples and label them as illustrative. Claude closely matches the length, tone and structure of examples, so a single "gold" output or a set of near-identical examples freezes that one shape into every answer. Use examples where the output format is genuinely sensitive; skip them for judgment the model already handles well.
 
 ### Template Structure
 
@@ -243,11 +245,11 @@ For medical diagnostics, request quotes from patient records placed in `<quotes>
 
 ### Context Window Advantage
 
-Claude 4 models support 1 million token windows, enabling complex, data-rich analysis across multiple documents simultaneously—making these organizational techniques particularly valuable for sophisticated tasks.
+Current Claude models (Opus 5.5, Sonnet 5.5, Fable 5.1 and the 4.6+ family) have 1 million token context windows; Haiku 4.5 has 200K. Larger windows make these organizational techniques more valuable, not less: placement, clear document tags and quote grounding still decide how well the model uses what's there.
 
 ---
 
-## Extended Thinking Tips
+## Adaptive Thinking and Effort
 
 ### Core Prompting Techniques
 
@@ -273,7 +275,9 @@ Prompt Claude to verify its work with test cases before completion. For coding t
 
 ### Technical Considerations
 
-- Thinking tokens require a minimum budget of 1,024 tokens
-- Extended thinking functions optimally in English
-- With Claude 4's 1M token context window, thinking budgets can scale significantly higher (200K+ tokens are supported)
-- Traditional chain-of-thought prompting with XML tags works for smaller thinking requirements
+- **Adaptive thinking replaces fixed budgets.** Use `thinking: {type: "adaptive"}`; Claude decides when and how much to think. On Opus 5.5 and Fable 5.1 thinking is always on.
+- **`budget_tokens` is deprecated or rejected** on current models (an error on Opus 5.5, Sonnet 5.5, Fable 5.1 and the 4.7+ family). Only Haiku 4.5 and older models still use `budget_tokens` (minimum 1,024, less than `max_tokens`).
+- **Control depth with `effort`**: `low`, `medium`, `high`, `xhigh`, `max`. Lower effort on the newest models often matches older models at high effort; raise it for hard agentic or coding work. Opus 5.5 defaults to `medium`.
+- **Prompting the thinking:** prompt text asking Claude to "think less" or "don't overthink" has little effect where thinking is always on — lower `effort` instead.
+- **Thinking counts toward `max_tokens`**, so don't size `max_tokens` for a thinking-off response.
+- When continuing a conversation on the same model, pass thinking blocks back **unchanged** in the assistant turns; never paste thinking into a user message.

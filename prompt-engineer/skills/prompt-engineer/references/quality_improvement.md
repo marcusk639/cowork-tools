@@ -106,17 +106,10 @@ Example XML:
 </analysis>
 ```
 
-**2. Response Prefilling**
-Begin the Assistant turn with your desired structure. This technique "bypasses Claude's friendly preamble and enforces your structure," making it particularly effective for standardized reports.
+**2. Structured Outputs**
+When the output must match a schema, enforce it in the API rather than in prose. Pass a JSON schema as `output_config: {format: {...}}` on the request, or define a tool with `strict: true` (schema with `additionalProperties: false` and `required`) so tool arguments are always schema-valid.
 
-Example:
-
-```
-User: Analyze this customer feedback.
-Assistant: {
-```
-
-This forces Claude to immediately start with the JSON structure.
+Assistant-turn prefill (starting the assistant message with `{` to force JSON) is **not supported on current models**: it returns a 400 error on the Opus/Sonnet 4.6+ family, Opus 5, Opus 5.5, Sonnet 5, Sonnet 5.5, Fable 5 and Fable 5.1. Replace prefill-based patterns with structured outputs, and remove any JSON-repair or retry loops that existed only to work around free-text output.
 
 **3. Example-Based Constraints**
 Supply concrete examples of desired output. Examples train Claude's understanding better than abstract instructions alone.

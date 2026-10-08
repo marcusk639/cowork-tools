@@ -47,10 +47,24 @@ Based on requirements, determine which techniques to apply:
 - **Format consistency** → Multishot prompting
 - **Multi-step tasks** → Prompt chaining
 - **Long documents** → Long context tips
-- **Deep analysis** → Extended thinking
+- **Deep analysis** → Adaptive thinking and effort
 - **Factual accuracy** → Hallucination reduction
 - **Output consistency** → Consistency techniques
 - **Security concerns** → Jailbreak mitigation
+
+### Writing for current Claude models
+
+Current Claude models (Opus 5.5, Sonnet 5.5, Fable 5.1 and the 4.6+ family) follow instructions closely and plan well on their own. Prompts written for older models are often too prescriptive and make output worse. Apply these to every prompt you write or review:
+
+- **State outcomes, constraints and how to check success** rather than scripting every step. Keep numbered steps only where order truly matters (destructive, auth or compliance flows).
+- **Write at normal volume.** Drop stacked `CRITICAL` / `MUST` / `NEVER` in capitals; when everything is emphasized, nothing is. Reserve emphasis for one instruction you have tested and found under-weighted.
+- **Give the reason with the rule.** A constraint with its "because" generalizes; a bare prohibition doesn't.
+- **Describe success instead of listing failures.** A prohibition against a mistake the model wasn't going to make can steer it toward that mistake. Keep prohibitions that encode real business or policy limits.
+- **Don't coach effort or length with old fixes.** Remove "be thorough", "don't be lazy", "think step by step" and hard word caps; current models are proactive by default. Use qualitative length guidance ("keep it to what the question needs") and the API's `effort` setting instead.
+- **Requirements are requirements.** "Try to" and "if possible" are read literally as optional. Write "Include a summary", not "try to include a summary".
+- **Don't over-constrain format or narration.** Rules such as "never use bullets" or "don't give progress updates" were written against chattier models and now suppress things readers want. Say *when* formatting or updates are wanted instead.
+- **Say it once.** Repetition, generic virtues ("be accurate and clear") and kitchen-sink edge cases all read as instructions and dilute the ones that matter.
+- **Context is never cruft.** Audience, product, quality bar and the reasons behind constraints are what only the author knows; keep them.
 
 ### Step 3: Load Relevant References
 
@@ -109,7 +123,7 @@ Specify exact format (JSON, XML, markdown, etc.)
 **Key Design Principles:**
 1. **Clarity**: Be explicit and specific
 2. **Structure**: Use XML tags to organize
-3. **Examples**: Provide 3-5 concrete examples for complex formats
+3. **Examples**: Provide several varied examples for format-sensitive output, labeled as illustrative
 4. **Context**: Give relevant background
 5. **Constraints**: Specify output requirements clearly
 
@@ -125,7 +139,7 @@ Based on quality needs, add appropriate safeguards:
 
 **For consistency:**
 - Provide explicit format specifications
-- Use response prefilling
+- Use structured outputs (`output_config.format` JSON schema) or `strict: true` tool schemas — assistant-turn prefill returns an error on current models
 - Include diverse examples
 - Consider prompt chaining
 
@@ -144,6 +158,8 @@ Based on quality needs, add appropriate safeguards:
 - [ ] Are examples diverse and relevant?
 - [ ] Are XML tags used consistently?
 - [ ] Is the prompt as concise as possible while remaining clear?
+- [ ] Is it written at normal volume, with reasons attached to constraints?
+- [ ] Are there leftover workarounds for older models (prefill, step-by-step coaching, hard word caps, anti-formatting rules)?
 
 **Testing approach:**
 - Run prompt multiple times with varied inputs
@@ -165,12 +181,13 @@ Based on quality needs, add appropriate safeguards:
 
 | Issue | Solution | Reference |
 |-------|----------|-----------|
-| Inconsistent format | Add examples, use prefilling | quality_improvement.md |
+| Inconsistent format | Structured outputs, varied examples | quality_improvement.md |
 | Hallucinations | Add uncertainty permission, quote grounding | quality_improvement.md |
 | Missing steps | Break into subtasks, use chaining | advanced_patterns.md |
 | Wrong tone | Add role to system prompt | core_prompting.md |
 | Misunderstands task | Add clarity, provide context | core_prompting.md |
-| Complex reasoning fails | Add chain of thought | advanced_patterns.md |
+| Complex reasoning fails | Raise `effort`; add chain of thought only if thinking is off | advanced_patterns.md |
+| Rigid, cautious or hedging output | Remove shouting, prohibition lists and step scripts | SKILL.md (Writing for current models) |
 
 ## Important Principles
 
@@ -199,7 +216,7 @@ Prompt engineering is iterative. Small changes can have significant impacts. Tes
 | Format consistency | Multishot prompting | advanced_patterns.md |
 | Multi-step process | Prompt chaining | advanced_patterns.md |
 | Long documents (100K+ tokens) | Long context tips | advanced_patterns.md |
-| Deep analysis | Extended thinking | advanced_patterns.md |
+| Deep analysis | Adaptive thinking + effort | advanced_patterns.md |
 | Reduce false information | Hallucination reduction | quality_improvement.md |
 | Consistent outputs | Consistency techniques | quality_improvement.md |
 | Security/safety | Jailbreak mitigation | quality_improvement.md |
@@ -207,7 +224,7 @@ Prompt engineering is iterative. Small changes can have significant impacts. Tes
 ### When to Combine Techniques
 
 - **Structured analysis**: XML tags + Chain of thought
-- **Consistent formatting**: Multishot + Response prefilling
+- **Consistent formatting**: Multishot + Structured outputs
 - **Complex workflows**: Prompt chaining + XML tags
 - **Factual reports**: Quote grounding + Citation verification
 - **Production systems**: System prompts + Input validation + Consistency techniques
@@ -228,7 +245,7 @@ Sophisticated techniques for complex tasks:
 - Multishot prompting
 - Prompt chaining
 - Long context handling
-- Extended thinking
+- Adaptive thinking and effort
 
 ### references/quality_improvement.md
 Techniques for specific quality issues:

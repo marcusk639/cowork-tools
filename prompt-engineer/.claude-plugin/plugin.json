@@ -1,0 +1,9 @@
+{
+  "name": "prompt-engineer",
+  "version": "0.1.0",
+  "description": "Write, improve and debug prompts for Claude using Anthropic's prompt-engineering best practices: clarity, XML structure, system prompts, chain of thought, multishot examples, prompt chaining, long-context handling, hallucination reduction, consistency and jailbreak mitigation.",
+  "author": {
+    "name": "Cowork Tools"
+  },
+  "keywords": ["prompt-engineering", "prompts", "system-prompts", "claude", "cowork"]
+}

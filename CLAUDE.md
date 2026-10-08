@@ -29,18 +29,17 @@ A desktop application (macOS and Windows) that syncs Claude Cowork data — proj
 
 | Path                        | What it is                                                                                                                         |
 | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `deep-research-plugin/`     | Cowork plugin, skill `deep-research`. 8-phase research pipeline using **only** Cowork's built-in web search/fetch — no API keys.   |
-| `deep-research-mcp-plugin/` | Cowork plugin, skill `deep-research-mcp`. 5-phase pipeline via **Firecrawl/Exa** MCP connectors. MCP-powered sibling of the above. |
+| `.claude-plugin/marketplace.json` | Marketplace manifest at the repo root; lists each plugin with `"source": "./<plugin>"`.                                     |
+| `deep-research/`            | Cowork plugin, skill `deep-research`. 8-phase research pipeline; uses Firecrawl/Exa connectors when enabled, else Cowork's built-in web search/fetch. |
 | `.planning/`                | GSD planning docs for the (unbuilt) sync app. Source of the GSD-managed sections below.                                            |
-| `README.md`                 | Accurate, user-facing description of both plugins.                                                                                 |
+| `README.md`                 | User-facing description of the plugins and install steps.                                                                                 |
 
-### Plugin anatomy (both follow the same shape)
+### Plugin anatomy
 
 ```
 <plugin>/
 ├── .claude-plugin/
-│   ├── plugin.json        # name, version, description, keywords
-│   └── marketplace.json   # makes it installable from Cowork → Plugins
+│   └── plugin.json        # name, version, description, keywords
 └── skills/<skill-name>/
     ├── SKILL.md           # the pipeline definition (the actual logic)
     └── reference/         # methodology.md, quality-gates.md, SETUP.md, provenance
@@ -48,13 +47,13 @@ A desktop application (macOS and Windows) that syncs Claude Cowork data — proj
 
 ### Conventions for plugin work
 
-- **Distinct skill names** (`deep-research` vs `deep-research-mcp`) — the two plugins
-  are co-installable; never collide their skill names.
+- **One marketplace, at the repo root.** A new plugin gets its own top-level folder and
+  an entry in `.claude-plugin/marketplace.json`; skill names must not collide.
 - **Methodology lives in `reference/`**, not inline in SKILL.md — keep SKILL.md the
   orchestration layer and push detail (red-team rules, quality gates) into reference docs.
 - **Red-team discipline is the differentiator**: a claim ships only if cited to a
   fetched source and surviving adversarial verification (3-persona / 2-of-3 kill rule).
-  Preserve this when editing either pipeline.
+  Preserve this when editing the pipeline.
 - No build step / test suite yet — plugins are Markdown + JSON. "Validation" = the
   `.claude-plugin/*.json` parse and the SKILL.md pipeline runs end-to-end.
 - A PostToolUse hook auto-runs Prettier on `.md`/`.json` after edits — expect

@@ -14,44 +14,72 @@ at the repo root lists the plugins, and each plugin lives in its own top-level f
 | [`llm-prompt-engineer`](./llm-prompt-engineer) | `llm-prompt-engineer` | None | None |
 | [`cowork-agents`](./cowork-agents) | Agents: `research-analyst`, `verifier` | Session's web tools / connectors | None |
 
+### Which one should I use?
+
+| You want to…                                                        | Use                                  |
+| ------------------------------------------------------------------- | ------------------------------------ |
+| Produce a long, fact-checked, fully cited research report           | `deep-research` skill                |
+| Research one part of a bigger task, or several questions in parallel | `cowork-agents:research-analyst`     |
+| Check one specific claim before you rely on it                       | `cowork-agents:verifier`             |
+| Write or fix a prompt, skill or agent for Cowork / Claude Code       | `prompt-engineer` skill              |
+| Build evals, rubrics or A/B tests for an LLM app                     | `llm-prompt-engineer` skill          |
+
+### Quick examples
+
+```text
+/deep-research-deep evidence that peer recovery coaching improves 12-month outcomes
+Use the research-analyst to compare pricing for the top three AI scribe vendors, with sources.
+Use the verifier on this claim before I send it: "Ambient AI documentation cuts charting time by 50%."
+Improve this system prompt for a support bot — answers are inconsistent: [paste]
+Build a test suite and grading rubric for this ticket-classification prompt.
+```
+
+Each plugin README below has more examples.
+
 ### deep-research
 
 Deep, multi-source, fact-checked research. Runs an **8-phase pipeline** (scope → plan →
 retrieve → triangulate → synthesize → red-team critique → refine → package) with
 evidence ledgers and depth modes (`quick`, `standard`, `deep`, `ultradeep`). A claim
 ships only if it is cited to a fetched source and survives a 3-persona red-team review.
+Slash commands: `/deep-research` plus one per mode.
 
 It searches and fetches with the **Firecrawl and/or Exa** connectors when they are
-enabled (any public URL, PDF parsing, domain filters, semantic search) and falls back
-to Cowork's built-in web search and fetch otherwise, so it works with zero setup.
+enabled and falls back to Cowork's built-in web search and fetch otherwise, so it works
+with zero setup.
 
-→ See [`deep-research/README.md`](./deep-research/README.md) and the connector
-[`SETUP.md`](./deep-research/skills/deep-research/reference/SETUP.md).
+→ [`deep-research/README.md`](./deep-research/README.md) · connector
+[`SETUP.md`](./deep-research/skills/deep-research/reference/SETUP.md)
 
 ### prompt-engineer
 
-Helps write, improve and debug prompts for Claude using Anthropic's prompt-engineering
-guidance: clarity, XML structure, system prompts, chain of thought, multishot examples,
-prompt chaining, hallucination reduction, consistency and jailbreak mitigation.
+Writes, improves and debugs prompts for Claude, updated for current models: outcome-focused
+instructions at normal volume, varied examples, structured outputs instead of prefill, and
+adaptive thinking with `effort` instead of thinking budgets.
 
-→ See [`prompt-engineer/README.md`](./prompt-engineer/README.md).
+→ [`prompt-engineer/README.md`](./prompt-engineer/README.md)
 
 ### llm-prompt-engineer
 
-Measurement-focused prompt engineering: evaluation frameworks and test suites, A/B
-testing, structured-output schemas, system prompts with guardrails, and context
+Measurement-focused, provider-neutral prompt engineering: evaluation frameworks and test
+suites, A/B testing, structured-output schemas, system prompts with guardrails, and context
 management. Packaged from [Jeffallan/claude-skills](https://github.com/Jeffallan/claude-skills) (MIT).
 
-→ See [`llm-prompt-engineer/README.md`](./llm-prompt-engineer/README.md).
+→ [`llm-prompt-engineer/README.md`](./llm-prompt-engineer/README.md)
 
 ### cowork-agents
 
-Subagents Claude can delegate to inside a Cowork task:
+Subagents Claude can hand work to inside a Cowork task. Each runs in its own context and
+returns only its result.
 
-- **`cowork-agents:research-analyst`** (Sonnet) — multi-source research and synthesis with cited findings.
-- **`cowork-agents:verifier`** (Opus) — adversarially re-checks a specific claim or finding before it is acted on, and returns CONFIRMED / REFUTED / PLAUSIBLE.
+- **`research-analyst`** (Sonnet) — multi-source research and synthesis with cited findings.
+- **`verifier`** (Opus) — re-checks one specific claim from primary sources and returns
+  CONFIRMED / REFUTED / PLAUSIBLE with the evidence.
 
-Neither agent restricts its tools, so each uses whatever the session has, including Firecrawl or Exa when enabled.
+Neither agent restricts its tools, so each uses whatever the session has, including
+Firecrawl or Exa when enabled.
+
+→ [`cowork-agents/README.md`](./cowork-agents/README.md)
 
 ## Installing in Cowork
 
@@ -97,7 +125,7 @@ cowork-tools/
 │   └── skills/prompt-engineer/
 │       ├── SKILL.md
 │       └── references/           # core, advanced, quality-improvement
-├── llm-prompt-engineer/     # third-party (MIT) prompt-engineering plugin
+├── llm-prompt-engineer/          # third-party (MIT) prompt-engineering plugin
 │   ├── .claude-plugin/plugin.json
 │   ├── LICENSE
 │   └── skills/llm-prompt-engineer/
